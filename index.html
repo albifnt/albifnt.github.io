@@ -3,10 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Website</title>
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Welcome to My Website</h1>
-    <p>This is hosted on GitHub Pages!</p>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Sidebar for desktop, top navbar for mobile -->
+    <nav class="bg-gray-800 text-white fixed w-64 h-screen p-5 hidden md:flex flex-col">
+        <h1 class="text-xl font-bold mb-5">My Portfolio</h1>
+        <a href="#academic" class="py-2 hover:bg-gray-700 rounded px-2">Academic Career</a>
+        <a href="#work" class="py-2 hover:bg-gray-700 rounded px-2">Working Career</a>
+        <a href="#certifications" class="py-2 hover:bg-gray-700 rounded px-2">Certifications</a>
+        <a href="#projects" class="py-2 hover:bg-gray-700 rounded px-2">Projects</a>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="bg-gray-800 text-white p-4 flex justify-between md:hidden">
+        <h1 class="text-xl font-bold">My Portfolio</h1>
+        <button id="menu-toggle" class="text-white focus:outline-none">
+            ☰
+        </button>
+        <div id="mobile-menu" class="absolute bg-gray-800 w-full left-0 top-14 hidden flex-col">
+            <a href="#academic" class="py-2 px-4 hover:bg-gray-700">Academic Career</a>
+            <a href="#work" class="py-2 px-4 hover:bg-gray-700">Working Career</a>
+            <a href="#certifications" class="py-2 px-4 hover:bg-gray-700">Certifications</a>
+            <a href="#projects" class="py-2 px-4 hover:bg-gray-700">Projects</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="md:ml-64 p-6">
+        <section id="academic" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Academic Career</h2>
+            <p class="text-gray-700">Describe your education history here...</p>
+        </section>
+
+        <section id="work" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Working Career</h2>
+            <p class="text-gray-700">List your work experience and details here...</p>
+        </section>
+
+        <section id="certifications" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Certifications</h2>
+            <p class="text-gray-700">List your certifications here...</p>
+        </section>
+
+        <section id="projects">
+            <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+            <p class="text-gray-700">Showcase your projects here...</p>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
 </body>
 </html>
+
