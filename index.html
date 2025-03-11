@@ -3,63 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Alberto Fontebasso</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-    <!-- Sidebar for desktop, top navbar for mobile -->
-    <nav class="bg-gray-800 text-white fixed w-64 h-screen p-5 hidden md:flex flex-col">
-        <h1 class="text-xl font-bold mb-5">My Portfolio</h1>
-        <a href="#academic" class="py-2 hover:bg-gray-700 rounded px-2">Academic Career</a>
-        <a href="#work" class="py-2 hover:bg-gray-700 rounded px-2">Working Career</a>
-        <a href="#certifications" class="py-2 hover:bg-gray-700 rounded px-2">Certifications</a>
-        <a href="#projects" class="py-2 hover:bg-gray-700 rounded px-2">Projects</a>
+    <!-- Sidebar for desktop -->
+    <nav class="bg-gray-800 text-white fixed w-64 h-screen p-5 hidden md:flex flex-col items-start">
+        <h1 class="text-xl font-bold mb-5">Alberto Fontebasso</h1>
+        <button onclick="showSection('about-me')" class="py-2 px-2 hover:bg-gray-700 rounded text-left w-full">About me</button>
+        <button onclick="showSection('academic')" class="py-2 px-2 hover:bg-gray-700 rounded text-left w-full">Academic Career</button>
+        <button onclick="showSection('work')" class="py-2 px-2 hover:bg-gray-700 rounded text-left w-full">Working Career</button>
+        <button onclick="showSection('certifications')" class="py-2 px-2 hover:bg-gray-700 rounded text-left w-full">Certifications</button>
+        <button onclick="showSection('projects')" class="py-2 px-2 hover:bg-gray-700 rounded text-left w-full">Projects</button>
+        <button onclick="showSection('contact-info')" class="py-2 px-2 hover:bg-gray-700 rounded text-left w-full">Contact information</button>
     </nav>
 
     <!-- Mobile Navbar -->
-    <nav class="bg-gray-800 text-white p-4 flex justify-between md:hidden">
-        <h1 class="text-xl font-bold">My Portfolio</h1>
-        <button id="menu-toggle" class="text-white focus:outline-none">
-            ☰
-        </button>
-        <div id="mobile-menu" class="absolute bg-gray-800 w-full left-0 top-14 hidden flex-col">
-            <a href="#academic" class="py-2 px-4 hover:bg-gray-700">Academic Career</a>
-            <a href="#work" class="py-2 px-4 hover:bg-gray-700">Working Career</a>
-            <a href="#certifications" class="py-2 px-4 hover:bg-gray-700">Certifications</a>
-            <a href="#projects" class="py-2 px-4 hover:bg-gray-700">Projects</a>
+    <nav class="bg-gray-800 text-white p-4 flex justify-between md:hidden relative">
+        <h1 class="text-xl font-bold">Alberto Fontebasso</h1>
+        <button id="menu-toggle" class="text-white focus:outline-none">☰</button>
+        <div id="mobile-menu" class="absolute right-0 mt-2 bg-gray-800 w-48 rounded shadow-lg hidden">
+            <button onclick="selectMobileSection('about-me')" class="block w-full text-left py-2 px-4 hover:bg-gray-700">About me</button>
+            <button onclick="selectMobileSection('academic')" class="block w-full text-left py-2 px-4 hover:bg-gray-700">Academic Career</button>
+            <button onclick="selectMobileSection('work')" class="block w-full text-left py-2 px-4 hover:bg-gray-700">Working Career</button>
+            <button onclick="selectMobileSection('certifications')" class="block w-full text-left py-2 px-4 hover:bg-gray-700">Certifications</button>
+            <button onclick="selectMobileSection('projects')" class="block w-full text-left py-2 px-4 hover:bg-gray-700">Projects</button>
+            <button onclick="selectMobileSection('contact-info')" class="block w-full text-left py-2 px-4 hover:bg-gray-700">Contact information</button>
         </div>
     </nav>
 
     <!-- Main Content -->
     <div class="md:ml-64 p-6">
-        <section id="academic" class="mb-10">
+
+        <section id="about-me" class="content-section">
+            <h2 class="text-2xl font-semibold mb-4">About me</h2>
+            <p class="text-gray-700">Describe your education history here...</p>
+        </section>
+
+        <section id="academic" class="content-section hidden">
             <h2 class="text-2xl font-semibold mb-4">Academic Career</h2>
             <p class="text-gray-700">Describe your education history here...</p>
         </section>
 
-        <section id="work" class="mb-10">
+        <section id="work" class="content-section hidden">
             <h2 class="text-2xl font-semibold mb-4">Working Career</h2>
             <p class="text-gray-700">List your work experience and details here...</p>
         </section>
 
-        <section id="certifications" class="mb-10">
+        <section id="certifications" class="content-section hidden">
             <h2 class="text-2xl font-semibold mb-4">Certifications</h2>
             <p class="text-gray-700">List your certifications here...</p>
         </section>
 
-        <section id="projects">
+        <section id="projects" class="content-section hidden">
             <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+            <p class="text-gray-700">Showcase your projects here...</p>
+        </section>
+
+        <section id="contact-info" class="content-section hidden">
+            <h2 class="text-2xl font-semibold mb-4">Contact information</h2>
             <p class="text-gray-700">Showcase your projects here...</p>
         </section>
     </div>
 
     <script>
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Toggle menu on button click
+        menuToggle.addEventListener('click', function (event) {
+            mobileMenu.classList.toggle('hidden');
+            event.stopPropagation(); // Prevent this click from closing the menu immediately
+        });
+
+        // Function to switch sections dynamically
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Function for mobile navigation
+        function selectMobileSection(sectionId) {
+            showSection(sectionId);
+            mobileMenu.classList.add('hidden'); // Close menu after clicking
+        }
+
+        // Close dropdown menu when clicking outside of it
+        document.addEventListener('click', function (event) {
+            if (!mobileMenu.contains(event.target) && event.target !== menuToggle) {
+                mobileMenu.classList.add('hidden');
+            }
         });
     </script>
 
 </body>
 </html>
-
